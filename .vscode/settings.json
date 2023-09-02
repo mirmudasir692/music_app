@@ -1,0 +1,323 @@
+{
+    "editor.fontLigatures": true,
+    "workbench.colorTheme": "Monokai Pro",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "workbench.colorCustomizations": {},
+    "editor.wordWrap": "on",
+    "editor.formatOnSave": true,
+    "oneDarkPro.bold": true,
+    "oneDarkPro.italic": false,
+    "workbench.editor.enablePreview": false,
+    "window.restoreWindows": "all",
+    "editor.fontFamily": "'Cascadia code', 'Courier New', monospace",
+    "editor.cursorBlinking": "expand",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.semanticHighlighting.enabled": false,
+    "python.linting.enabled": false,
+    "files.hotExit": "onExit",
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.tokenColorCustomizations": {
+      "textMateRules": [
+        {
+          "scope": [
+            "comment",
+            "comment.block",
+            "comment.block.documentation",
+            "comment.line",
+            "constant",
+            "constant.character",
+            "constant.character.escape",
+            "constant.numeric",
+            "constant.numeric.integer",
+            "constant.numeric.float",
+            "constant.numeric.hex",
+            "constant.numeric.octal",
+            "constant.other",
+            "constant.regexp",
+            "constant.rgb-value",
+            "emphasis",
+            "entity",
+            "entity.name",
+            "entity.name.class",
+            "entity.name.function",
+            "entity.name.method",
+            "entity.name.section",
+            "entity.name.selector",
+            "entity.name.tag",
+            "entity.name.type",
+            "entity.other",
+            "entity.other.attribute-name",
+            "entity.other.inherited-class",
+            "invalid",
+            "invalid.deprecated",
+            "invalid.illegal",
+            "keyword",
+            "keyword.control",
+            "keyword.operator",
+            "keyword.operator.new",
+            "keyword.operator.assignment",
+            "keyword.operator.arithmetic",
+            "keyword.operator.logical",
+            "keyword.other",
+            "markup",
+            "markup.bold",
+            "markup.changed",
+            "markup.deleted",
+            "markup.heading",
+            "markup.inline.raw",
+            "markup.inserted",
+            "markup.italic",
+            "markup.list",
+            "markup.list.numbered",
+            "markup.list.unnumbered",
+            "markup.other",
+            "markup.quote",
+            "markup.raw",
+            "markup.underline",
+            "markup.underline.link",
+            "meta",
+            "meta.block",
+            "meta.cast",
+            "meta.class",
+            "meta.function",
+            "meta.function-call",
+            "meta.preprocessor",
+            "meta.return-type",
+            "meta.selector",
+            "meta.tag",
+            "meta.type.annotation",
+            "meta.type",
+            "punctuation.definition.string.begin",
+            "punctuation.definition.string.end",
+            "punctuation.separator",
+            "punctuation.separator.continuation",
+            "punctuation.terminator",
+            "storage",
+            "storage.modifier",
+            "storage.type",
+            "string",
+            "string.interpolated",
+            "string.other",
+            "string.quoted",
+            "string.quoted.double",
+            "string.quoted.other",
+            "string.quoted.single",
+            "string.quoted.triple",
+            "string.regexp",
+            "string.unquoted",
+            "strong",
+            "support",
+            "support.class",
+            "support.constant",
+            "support.function",
+            "support.other",
+            "support.type",
+            "support.type.property-name",
+            "support.variable",
+            "variable",
+            "variable.language",
+            "variable.name",
+            "variable.other",
+            "variable.other.readwrite",
+            "variable.parameter"
+          ],
+          "settings": {
+            "fontStyle": ""
+          }
+        }
+      ]
+    },
+    "better-comments.tags": [
+      {
+        "tag": "!",
+        "color": "#FF2D00",
+        "strikethrough": false,
+        "underline": false,
+        "backgroundColor": "transparent",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "tag": "?",
+        "color": "#3498DB",
+        "strikethrough": false,
+        "underline": false,
+        "backgroundColor": "transparent",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "tag": "//",
+        "color": "#474747",
+        "strikethrough": true,
+        "underline": false,
+        "backgroundColor": "transparent",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "tag": "todos",
+        "color": "yellow",
+        "strikethrough": false,
+        "underline": false,
+        "backgroundColor": "transparent",
+        "bold": true,
+        "caseSensitive": false,
+        "italic": false
+      },
+      {
+        "tag": "*",
+        "color": "#98C379",
+        "strikethrough": false,
+        "underline": false,
+        "backgroundColor": "transparent",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "colorHelper.disableGpu": 1,
+    "colorHelper.disableShadow": true,
+    "colorHelper.disableTransparent": true,
+    "code-runner.runInTerminal": true,
+    "todohighlight.isEnable": true,
+    "todohighlight.isCaseSensitive": true,
+    "todohighlight.keywords": [
+      "DEBUG",
+      "REVIEW",
+      {
+        "text": "NOTE:",
+        "color": "black",
+        "backgroundColor": "orange",
+        "overviewRulerColor": "grey"
+      },
+      {
+        "text": "HACK",
+        "color": "#000",
+        "isWholeLine": false
+      },
+      {
+        "text": "TODO:",
+        "color": "black",
+        "backgroundColor": "orange"
+      },
+      {
+        "text": "FIXME:",
+        "color": "#fff",
+        "backgroundColor": "purple"
+        // "overviewRulerColor": "grey"
+      },
+      {
+        "text": "BUG:",
+        "color": "white",
+        "backgroundColor": "red",
+        "overviewRulerColor": "grey"
+      },
+      {
+        "text": "REFACTOR:",
+        "color": "white",
+        "backgroundColor": "blue",
+        "overviewRulerColor": "grey"
+      }
+    ],
+    "editor.fontSize": 13,
+    "editor.guides.bracketPairs": "active",
+    "C_Cpp.autocompleteAddParentheses": true,
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 500,
+    "workbench.editor.untitled.hint": "hidden",
+    "[css]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.linkedEditing": true,
+    "php.suggest.basic": false,
+    "php.validate.enable": false,
+    "emmet.excludeLanguages": ["markdown", "php"],
+    "[php]": {
+      "editor.defaultFormatter": "DEVSENSE.phptools-vscode"
+    },
+    "editor.codeActionsOnSave": {},
+    "python.pythonPath": "python3",
+    "code-runner.executorMap": {
+      "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+      "cpp": "cd $dir && g++ $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+      "python": "/usr/bin/python3"
+    },
+    "[jsonc]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "window.experimental.useSandbox": true,
+    "liveServer.settings.donotVerifyTags": true,
+    "liveServer.settings.donotShowInfoMsg": true,
+    "[scss]": {
+      "editor.defaultFormatter": "sibiraj-s.vscode-scss-formatter"
+    },
+    "editor.stickyScroll.enabled": true,
+    "[json]": {
+      "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "python.condaPath": "/home/kali/micromamba/condabin/conda",
+    "rapidapi.terminalLink.enabled": false,
+    "git.openRepositoryInParentFolders": "never",
+    "[python]": {
+      "editor.formatOnType": true,
+      "editor.defaultFormatter": "ms-python.autopep8"
+    },
+    "window.zoomLevel": 2,
+    "C_Cpp.intelliSenseEngine": "Tag Parser",
+    "editor.inlineSuggest.enabled": true,
+    "window.menuBarVisibility": "toggle",
+    "material-ui-snippets.showNotesOnStartup": false,
+    "code-runner.executorMapByGlob": {
+      "pom.xml": "cd $dir && mvn clean package"
+    },
+    "code-runner.executorMapByFileExtension": {
+      ".c": "cd $dir && /usr/bin/gcc $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+      ".cpp": "cd $dir && /usr/bin/g++ $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+      ".vb": "cd $dir && vbc /nologo $fileName && $dir$fileNameWithoutExt",
+      ".vbs": "cscript //Nologo",
+      ".scala": "scala",
+      ".jl": "julia",
+      ".cr": "crystal",
+      ".ml": "ocaml",
+      ".zig": "zig run",
+      ".exs": "elixir",
+      ".hx": "haxe --cwd $dirWithoutTrailingSlash --run $fileNameWithoutExt",
+      ".rkt": "racket",
+      ".scm": "csi -script",
+      ".ahk": "autohotkey",
+      ".au3": "autoit3",
+      ".kt": "cd $dir && kotlinc $fileName -include-runtime -d $fileNameWithoutExt.jar && java -jar $fileNameWithoutExt.jar",
+      ".kts": "kotlinc -script",
+      ".dart": "dart",
+      ".pas": "cd $dir && fpc $fileName && $dir$fileNameWithoutExt",
+      ".pp": "cd $dir && fpc $fileName && $dir$fileNameWithoutExt",
+      ".d": "cd $dir && dmd $fileName && $dir$fileNameWithoutExt",
+      ".hs": "runhaskell",
+      ".nim": "nim compile --verbosity:0 --hints:off --run",
+      ".csproj": "dotnet run --project",
+      ".fsproj": "dotnet run --project",
+      ".lisp": "sbcl --script",
+      ".kit": "kitc --run",
+      ".v": "v run",
+      ".vsh": "v run",
+      ".sass": "sass --style expanded",
+      ".cu": "cd $dir && nvcc $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+      ".ring": "ring",
+      ".sml": "cd $dir && sml $fileName"
+    },
+    "clangd.detectExtensionConflicts": false,
+    "github.copilot.enable": {
+      "*": true,
+      "plaintext": false,
+      "markdown": false,
+      "scminput": false
+    },
+    "liveSassCompile.settings.includeItems": [],
+    "python.formatting.provider": "none"
+  }

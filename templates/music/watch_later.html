@@ -1,0 +1,154 @@
+{% extends 'music/base.html' %} {% block body %}
+<h1 class="text-center" style="padding-bottom: 30px">Watch Later</h1>
+{% if request.user.is_authenticated %}
+<div style="display: flex; flex-direction: column">
+  {% if audios %}
+  <div
+    class="container"
+    style="
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      column-gap: 20px;
+    "
+  >
+    {% for audio in audios %}
+    <div class="card" style="width: 22rem">
+      <img
+        src="{{audio.image.url}}"
+        class="card-img-top"
+        style="height: 300px"
+        alt="..."
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{audio.name}}</h5>
+        <h5 class="card-text" style="color: green">{{audio.artist}}</h5>
+        <p class="card-text">catagory : {{audio.catagory | title}}</p>
+        <div style="display: flex; justify-content: space-between">
+          <a
+            href="{% url 'music:listen_music' audio.id %}"
+            class="btn btn-primary"
+            >play</a
+          >
+          <span
+            style="font-size: 30px; opacity: 0.8"
+            class="remove_later"
+            data-audio-id="{{audio.id}}"
+            ><i class="fa-solid fa-trash"></i
+          ></span>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div style="margin-left: auto; margin-right: auto">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        {% if audios.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{audios.previous_page_number}}"
+            >Previous</a
+          >
+        </li>
+        {% endif %}
+        <li class="page-item"><a class="page-link">{{audios.number}}</a></li>
+        {% if audios.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{audios.next_page_number}}">Next</a>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+  {% else %}
+  <h1 class="text-center" style="font-size: 500px; opacity: 0.5">
+    <i class="fa-solid fa-clock"></i>
+  </h1>
+  {% endif %}
+</div>
+{% else %}
+<div style="display: flex; flex-direction: column">
+  {% if audios %}
+  <div
+    class="container"
+    style="
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      column-gap: 20px;
+      row-gap: 20px;
+    "
+  >
+    {% for audio in audios %}
+    <div class="card" style="width: 22rem">
+      <img
+        src="{{audio.image.url}}"
+        class="card-img-top"
+        style="height: 300px"
+        alt="..."
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{audio.name}}</h5>
+        <h5 class="card-text" style="color: green">{{audio.artist}}</h5>
+        <p class="card-text">catagory : {{audio.catagory | title}}</p>
+        <a
+          href="{% url 'music:listen_music' audio.id %}"
+          class="btn btn-primary"
+          >play</a
+        >
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div style="margin-left: auto; margin-right: auto">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        {% if audios.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{audios.previous_page_number}}"
+            >Previous</a
+          >
+        </li>
+        {% endif %}
+        <li class="page-item"><a class="page-link">{{audios.number}}</a></li>
+        {% if audios.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{audios.next_page_number}}">Next</a>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+  {% else %}
+  <h1 class="text-center" style="font-size: 500px; opacity: 0.5">
+    <i class="fa-solid fa-clock"></i>
+  </h1>
+  {% endif %}
+</div>
+{% endif %}
+<script>
+  let delete_btns = document.querySelectorAll(".remove_later");
+  delete_btns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      audio_id = btn.getAttribute("data-audio-id");
+      fetch('{% url "music:remove_later" %}', {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": "{{ csrf_token }}",
+        },
+        body: JSON.stringify({
+          'audio_id': audio_id,
+        }),
+      })
+        .then((response) => {
+          if (response.ok) {
+            console.log("item has deleted");
+            window.location.reload()
+          }
+        })
+        .catch((err) => {
+          console.log("an error has occurred");
+        });
+    });
+  });
+</script>
+{% endblock %}

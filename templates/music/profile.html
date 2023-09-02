@@ -1,0 +1,27 @@
+{% extends "music/base.html" %} {% block body %}
+<div
+  style="
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-flow: column;
+    gap: 30px;
+    border: 1px solid navy;
+    padding: 50px 0px;
+    border-radius: 40px;
+  "
+>
+  <h1 class="text-center">Profile</h1>
+  <h3 class="text-center">Username : {{request.user.username}}</h3>
+  <h3 class="text-center">Email : {{request.user.email}}</h3>
+  <h3 class="text-center">Phone :{{request.user.phone}}</h3>
+  <h3 class="text-center">Date Of Birth {{request.user.dob}}</h3>
+  <h3 class="text-center">Gender : {{ request.user.get_gender_display }}</h3>
+  <div class="text-center">
+    <a href="{% url 'users:delete' %}" class="btn btn-primary btn-lg">Delete Account</a>
+    <a href="{% url 'users:update' %}" class="btn btn-success btn-lg">Edit</a>
+  </div>
+</div>
+
+{% endblock %}

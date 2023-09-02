@@ -1,0 +1,23 @@
+{% extends "music/base.html" %} {% block body %}
+
+<h1 class="text-center" style="margin-bottom: 40px">
+  Join Or Create Room To Start Music
+</h1>
+<h1 class="text-center" style="margin-bottom: 40px">
+  <a href="{% url 'lives:start_room' %}" style="width: 100px" class="btn btn-outline-success">Start</a>
+</h1>
+{% for room in rooms %}
+<div style="max-width: 700px; margin-left: auto; margin-right: auto">
+  <div class="card">
+    <div class="card-header" style="color: grey">Playing</div>
+    <div class="card-body">
+      <h5 class="card-title"><span style="color: grey;font-weight:400">Song Playing : </span>{{room.music.name}}</h5>
+      <p class="card-text" style="font-size: 17px;font-weight:400"><span>admin :</span> {{room.admin | title}}</p>
+      <p class="card-text"><span>Users :</span>{{room.user_num}}</p>
+      <a href="{% url 'lives:join_room' room.id %}" class="btn btn-outline-primary" style="width: 100px">Join</a>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+{% endblock %}

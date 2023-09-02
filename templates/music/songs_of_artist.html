@@ -1,0 +1,91 @@
+{% extends "music/base.html" %} {% block body %}
+<h1 class="text-center" style="padding-bottom: 30px">
+  Songs Of {{ artist.name | title }}
+</h1>
+
+<div style="display: flex; flex-direction: column">
+  <div
+    class="container"
+    style="
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      column-gap: 20px;
+      row-gap:20px
+    "
+  >
+    {% for audio in audios %}
+    <div class="card" style="width: 22rem">
+      <img
+        src="{{audio.image.url}}"
+        class="card-img-top"
+        style="height: 300px"
+        alt="..."
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{audio.name}}</h5>
+        <h5 class="card-text" style="color: green">{{audio.artist}}</h5>
+        <p class="card-text">catagory : {{audio.catagory | title}}</p>
+        <p class="card-text">listens : {{audio.views}}</p>
+        <p>released on :{{audio.released_on}}</p>
+        <a
+          href="{% url 'music:listen_music' audio.id %}"
+          class="btn btn-primary"
+          >listen</a
+        >
+      </div>
+    </div>
+    {% endfor %}
+    <div style="margin-left: 170%">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          {% if audios.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{audios.previous_page_number}}"
+              >Previous</a
+            >
+          </li>
+          {% endif %}
+          <li class="page-item"><a class="page-link">{{audios.number}}</a></li>
+          {% if audios.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{audios.next_page_number}}"
+              >Next</a
+            >
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+<div>
+  <div class="container">
+    <h1 class="text-start">Artists</h1>
+    <div class="container text-center">
+      {% for artist in artists %}
+      <div class="row">
+        <div class="col">
+          <h4 style="color: navy">
+            <a href="{% url 'music:artist_songs' artist.id %}"
+              >{{artist.name}}</a
+            >
+          </h4>
+        </div>
+
+        <div class="col">
+          <h5>{{artist.songs}} songs</h5>
+        </div>
+        <div class="col">
+          <h5>
+            {{artist.rating}}
+            <span style="color: darkorange"
+              ><i class="fa-solid fa-star"></i
+            ></span>
+          </h5>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

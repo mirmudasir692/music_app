@@ -1,0 +1,67 @@
+{% extends "music/base.html" %}
+{% block link %}
+<style>
+    .overlay{
+        display: block;
+        background-color: grey;
+        height: 50px;
+        width: 100%;
+        position: relative;
+        z-index: 2;
+        top: -110px;
+        opacity: 0;
+        cursor:not-allowed;
+    }
+</style>
+{% endblock %}
+{% load static %}
+{% block body %}
+
+<h1 class="text-center"> <span style="color: grey;">Room :</span> {{room.name | title}}</h1>
+
+<div style="display:flex">
+  <div class="card text-center" style="width: 50rem; display: flex; flex-flow: row;margin-right:auto;margin-top:30px">
+  <div style="height: 500px; width: 550px">
+      <img
+      src="{{room.music.image.url}}"
+      style="height: 100%; width: 100%"
+      class="card-img-top"
+      alt="{{audio.name}}"
+      />
+      <audio
+      class="audio_player"
+      src="{{room.music.audio.url}}"
+      style="width: 100%; position: relative; bottom: 50px; z-index: 2"
+      controls
+      autoplay
+      >
+  </audio>
+  <div class="overlay"></div>
+  </div>
+  <div style="width: 35rem">
+    <div class="card-body">
+      <h5 class="card-title" style="font-size: 35px;"><span>{{room.music.name}}</span></h5>
+      <h5 class="card-text" style="color: grey;font-size:40px">{{room.admin}}</h5>
+      <p class="card-text"></p>
+      <p class="card-text" style="font-size: 30px;">joined : {{room.user_num}}</p>
+    </div>
+  </div>
+</div>
+<div class="container mb-4 border supercont" style="width:400px;height:600px;">
+  <div id="messagecontbox" style="display: flex;flex-direction:column;gap:10px;height:80%;overflow-y:scroll;background-color:aquamarine">
+
+  </div>
+    <div class="input-group" style="position:absolute;top:69%;width:20%">
+      <input id="chat" class="form-control" placeholder="enter your message" aria-label="With textarea">
+      <button class="send-btn">send</button>
+    </div>
+</div>
+  
+  {{roomName|json_script:"room_name"}}
+{{username|json_script:"user_name"}}
+{{room.admin.username|json_script:"admin_username"}}
+
+{{room.timeFix|json_script:"room_time"}}
+{{room.state|json_script:"room_state"}}
+<script src="{% static 'js/index.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "music/base.html" %} {% block body %}
+<h1 class="text-center" style="padding-bottom: 30px">Your History</h1>
+<h1 class="text-center">
+</h1>
+{% if audios %}
+<h1 class="text-center"><a href="{% url 'music:remove_history' %}" style="width: 200px;" class="btn btn-outline-warning"
+  >Clear all</a
+  ></h1>
+<div style="display: flex; flex-direction: column">
+  <div
+    class="container"
+    style="
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      column-gap: 20px;
+      row-gap:20px
+    "
+  >
+    {% for audio in audios %}
+    <div class="card" style="width: 22rem">
+      <img
+        src="{{audio.image.url}}"
+        class="card-img-top"
+        style="height: 300px"
+        alt="..."
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{audio.name}}</h5>
+        <h5 class="card-text" style="color: green">{{audio.artist}}</h5>
+        <p class="card-text">catagory : {{audio.catagory | title}}</p>
+        <p class="card-text">listens : {{audio.views}}</p>
+        <a
+          href="{% url 'music:listen_music' audio.id %}"
+          class="btn btn-primary"
+          >play</a
+        >
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div style="margin-left: auto; margin-right: auto">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        {% if audios.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{audios.previous_page_number}}"
+            >Previous</a
+          >
+        </li>
+        {% endif %}
+        <li class="page-item"><a class="page-link">{{audios.number}}</a></li>
+        {% if audios.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{audios.next_page_number}}">Next</a>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+</div>
+{% else %}
+<h1 class="text-center" style="font-size: 500px; opacity: 0.5">
+  <i class="fa-solid fa-clock"></i>
+</h1>
+{% endif %} {% endblock %}

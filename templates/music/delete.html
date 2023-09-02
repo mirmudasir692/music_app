@@ -1,0 +1,9 @@
+{% extends "music/base.html" %}
+{% block body %}
+<form action="" method="post" style="margin-left: auto;" class="text-center">
+    {% csrf_token %}
+    <p>Do You Really Want To Delete Our Connection ?</p>
+    <input type="submit" value="Delete" class="btn btn-warning">
+
+</form>
+{% endblock %}

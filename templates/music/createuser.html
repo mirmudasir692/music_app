@@ -1,0 +1,144 @@
+{% extends 'music/base.html' %} {% block body %}
+
+<form
+  action="{% url 'users:create' %}"
+  method="post"
+  class="form"
+  style="margin-left: auto; margin-right: auto; max-width: 600px"
+>
+{% for message in messages %}
+<p class="text-center" style="color:red">{{message}}</p>
+{%  endfor%}
+  {% csrf_token %}
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">@</span>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Username"
+      name="username"
+      aria-label="Username"
+      aria-describedby="basic-addon1"
+    />
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">Email</span>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Email"
+      name="email"
+      aria-label="Email"
+      aria-describedby="basic-addon1"
+    />
+  </div>
+  <div class="mb-3">
+    <div class="form-text" id="basic-addon4">
+      We never share personal details with anyone else
+    </div>
+  </div>
+
+  <div class="input-group mb-3">
+    <span class="input-group-text">Phone</span>
+    <input
+      type="tel"
+      class="form-control"
+      name="phone"
+      placeholder="********489"
+      aria-label="Amount (to the nearest dollar)"
+    />
+  </div>
+
+  <div class="input-group mb-3">
+    <input
+      type="password"
+      class="form-control password1"
+      placeholder="Password"
+      name="password1"
+      aria-label="password"
+    />
+    <input
+      type="password"
+      class="form-control password2"
+      name="password2"
+      placeholder="Confirm Password"
+      aria-label="Confirm Password"
+    />
+  </div>
+  <div class="input-group mb-3">
+    <label for="date">Date Of Birth :</label>
+    <input
+      type="date"
+      id="datePicker"
+      style="padding-left: 10px; padding-right: 10px"
+      name="dob"
+    />
+  </div>
+  <p>select gender</p>
+  <div style="display: flex">
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="radio"
+        value="M"
+        name="gender"
+        id="flexRadioDefault1"
+      />
+      <label class="form-check-label" for="flexRadioDefault1"> Male </label>
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="radio"
+        value="F"
+        name="gender"
+        id="flexRadioDefault2"
+        checked
+      />
+      <label class="form-check-label" for="flexRadioDefault2"> Female </label>
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="radio"
+        name="gender"
+        value="O"
+        id="flexRadioDefault3"
+        checked
+      />
+      <label class="form-check-label" for="flexRadioDefault2"> Other </label>
+    </div>
+  </div>
+
+  <div class="input-group">
+    <span class="input-group-text">With textarea</span>
+    <textarea class="form-control" aria-label="With textarea"></textarea>
+  </div>
+  <div style="margin-left: 42%">
+    <input
+      type="submit"
+      class="btn btn-outline-success submit"
+      style="width: 150px"
+      value="Create"
+    />
+  </div>
+</form>
+<script>
+  let password1 = document.querySelector(".password1");
+  let password2 = document.querySelector(".password2");
+  let submit_btn = document.querySelector(".submit");
+  let form = document.querySelector(".form");
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (password1.value !== password2.value) {
+      form;
+      alert("password should match");
+      password1.value = "";
+      password2.value = "";
+      password1.focus();
+    } else {
+      form.submit();
+    }
+  });
+</script>
+{% endblock %}

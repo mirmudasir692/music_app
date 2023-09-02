@@ -1,0 +1,107 @@
+{% extends "music/base.html" %} {% block body %}
+
+<div style="max-width: 500px; margin-left: auto; margin-right: auto">
+  <nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+      <form
+        class="d-flex"
+        accept="{% url 'lives:start_room' %}"
+        method="post"
+        id="form"
+        role="search"
+      >
+        {% csrf_token %}
+        <input
+          class="form-control me-2"
+          type="text"
+          placeholder="Choose name for room"
+          aria-label="Search"
+          required
+          name="room_name"
+          id="room_name"
+        />
+      </div>
+    </nav>
+    {% for audio in audios %}
+    <div class="card">
+      <div class="card-header">Select</div>
+      <div class="card-body">
+        <h5 class="card-title">{{audio.name}}</h5>
+        <input type="hidden" name="audio_selected" value="{{ audio.id }}">
+        <p class="card-text" style="color: green">artist : {{audio.artist}}</p>
+        <button
+        class="btn btn-outline-success submit"
+        id="create"
+        type="submit"
+        data-audio-id="{{audio.id}}"
+        >
+        choose and start
+      </button>
+    </div>
+  </div>
+</form>
+  {% endfor %}
+</div>
+<div style="margin-left: 45%">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      {% if audios.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{audios.previous_page_number}}"
+          >Previous</a
+        >
+      </li>
+      {% endif %}
+      <li class="page-item"><a class="page-link">{{audios.number}}</a></li>
+      {% if audios.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{audios.next_page_number}}">Next</a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+</div>
+<script>
+  let form=document.querySelector('#form')
+  let roomnamebox=document.querySelector("#room_name")
+  form.addEventListener('submit',(event)=>{
+    event.preventDefault()
+  })
+  let btns=document.querySelectorAll('.submit')
+  btns.forEach((btn)=>{
+    btn.addEventListener('click',()=>{
+      if(roomnamebox.value!==""){
+        audio_id=btn.getAttribute('data-audio-id')
+        roomName=roomnamebox.value
+        fetch('{% url "lives:start_room" %}',{
+          method:'POST',
+          headers:{
+            'Content-Type':'application/json',
+            'X-CSRFToken':"{{ csrf_token }}"
+          },
+          body:JSON.stringify({
+            'audio_id':audio_id,
+            'roomName':roomName
+    
+          })
+        })
+        .then((response)=>{
+          if(response.status==200){
+            window.history.go(-1)
+          }
+          else{
+            alert("something went wrong")
+          }
+        })
+        .then((data)=>console.log(data))
+        .catch((err)=>{
+          alert("something went wrong")
+        })
+      }
+      else{
+        roomnamebox.focus()
+      }
+      })
+  })
+</script>
+{% endblock %}

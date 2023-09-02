@@ -1,0 +1,136 @@
+{% extends "music/base.html" %} {% block body %} {% for message in messages %}
+<p class="text-center" style="color: green;font-weight:600">{{message}}</p>
+{% endfor %}
+<div style="display: flex; flex-direction: column">
+  <div
+    class="container"
+    style="
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      column-gap: 20px;
+      row-gap: 20px;
+    "
+  >
+    {% for audio in audios %}
+    <div class="card" style="width: 22rem">
+      <img
+        src="{{audio.image.url}}"
+        class="card-img-top"
+        style="height: 300px"
+        alt="..."
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{audio.name}}</h5>
+        <h5 class="card-text" style="color: green">{{audio.artist}}</h5>
+        <p class="card-text">catagory : {{audio.catagory | title}}</p>
+        <p class="card-text">listens : {{audio.views}}</p>
+        <p>released on :{{audio.released_on}}</p>
+        <div style="display: flex; gap: 10px">
+          <a
+            href="{% url 'music:listen_music' audio.id %}"
+            style="width: 100px"
+            class="btn btn-primary"
+            >play</a
+          >
+
+          <form
+            action="{% url 'music:add_watch_later' audio.id %}"
+            method="post"
+          >
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success" style="width: 60px">
+              <i class="fa-solid fa-clock"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div style="margin-left: auto; margin-right: auto">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        {% if audios.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{audios.previous_page_number}}"
+            >Previous</a
+          >
+        </li>
+        {% endif %}
+        <li class="page-item"><a class="page-link">{{audios.number}}</a></li>
+        {% if audios.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{audios.next_page_number}}">Next</a>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+</div>
+<div class="container">
+  <h1 class="text-start">Artists</h1>
+  <div class="container text-center">
+    {% for artist in artists %}
+    <div class="row">
+      <div class="col">
+        <h4 style="color: navy">
+          <a href="{% url 'music:artist_songs' artist.id %}">{{artist.name}}</a>
+        </h4>
+      </div>
+      <div class="col">
+        <h5>{{artist.songs}} songs</h5>
+      </div>
+      <div class="col">
+        <h5>
+          {{artist.rating}}
+          <span style="color: darkorange"
+            ><i class="fa-solid fa-star"></i
+          ></span>
+        </h5>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div style="margin-left: 45%">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        {% if artists.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{artists.previous_page_number}}"
+            >Previous</a
+          >
+        </li>
+        {% endif %}
+        <li class="page-item"><a class="page-link">{{artists.number}}</a></li>
+        {% if artists.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{artists.next_page_number}}"
+            >Next</a
+          >
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+  <div class="container text-center">
+    {% for playlist in playlists %}
+    <div class="row">
+      <div class="col">
+        <h4 style="color: navy">
+          <a>{{playlist.name}}</a>
+        </h4>
+      </div>
+      <div class="col">
+        <h5>{{playlist.music_tracks.count}} songs</h5>
+      </div>
+      <div class="col">
+        <a href="{% url 'music:playlist_songs' playlist.id %}"
+          ><span style="font-size: 30px"
+            ><i class="fa-solid fa-caret-right"></i></span
+        ></a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

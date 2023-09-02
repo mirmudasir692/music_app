@@ -1,0 +1,113 @@
+{% extends 'music/base.html' %} {% block body %}
+<div style="display: flex; justify-content: space-between">
+  <div class="container mt-5" style="display: flex; flex-flow: column">
+    <div class="card container" style="width: 50rem; display: flex; flex-flow: row">
+      <div style="height: 500px; width: 550px">
+        <img
+          src="{{audio.image.url}}"
+          style="height: 100%; width: 100%"
+          class="card-img-top"
+          alt="{{audio.name}}"
+        />
+        <audio
+          src="{{audio.audio.url}}"
+          style="width: 100%; position: relative; bottom: 50px; z-index: 2"
+          controls
+          autoplay
+          loop
+        ></audio>
+      </div>
+      <div style="width: 35rem">
+        <div class="card-body">
+          <h5 class="card-title">{{audio.name}}</h5>
+          <h5 class="card-text" style="color: green">{{audio.artist}}</h5>
+          <p class="card-text"></p>
+          <p class="card-text">catagory : {{audio.catagory | title}}</p>
+          <p class="card-text">listens : {{audio.views}}</p>
+          <p>released on :{{audio.released_on}}</p>
+          <div
+            style="margin-left: auto; gap: 30px"
+            class="btn-group"
+            role="group"
+            aria-label="Basic example"
+          >
+            <form
+              action="{% url 'music:add_watch_later' audio.id %}"
+              method="post"
+            >
+              {% csrf_token %}
+              <input
+                type="submit"
+                class="btn btn-outline-success"
+                value="Add to later"
+              />
+            </form>
+            <a
+              type="button"
+              class="btn btn-outline-primary"
+              href="{{audio.audio.url}}"
+              download
+            >
+              download
+            </a>
+            <a
+              type="button"
+              id="whatsapp-share"
+              target="_blank"
+              class="btn btn-outline-warning"
+              >Share</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="container">
+      {% for audio in related_audios %}
+      <div class="card" style="width: 35rem">
+        <div class="card-header">
+          <span style="color: grey">recommended</span>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{audio.name}}</h5>
+          <h5 style="font-weight: 300">
+            <span style="color: green; font-weight: 300"></span>
+            {{audio.artist | title}}
+          </h5>
+          <h5 style="font-weight: 300">
+            <span style="color: grey; font-weight: 300">listens</span>
+            {{audio.views}}
+          </h5>
+          <h5 style="font-weight: 300">
+            <span style="color: grey; font-weight: 300">catagory :</span>
+            {{audio.catagory}}
+          </h5>
+          <a
+            href="{% url 'music:listen_music' audio.id %}"
+            class="btn btn-primary"
+            >Play</a
+          >
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<script>
+  const url = window.location.href;
+  function setWhatsappLink() {
+    if (isWhatsAppInstalled()) {
+      document.getElementById(
+        "whatsapp-share"
+      ).href = `whatsapp://send?text=${encodeURIComponent(url)}`;
+    } else {
+      document.getElementById("whatsapp-share").href = `whatsapp://send?text=${url}`;
+    }
+  }
+  function isWhatsAppInstalled() {
+    return /WhatsApp/.test(navigator.userAgent);
+  }
+  setWhatsappLink();
+</script>
+{% endblock %}
